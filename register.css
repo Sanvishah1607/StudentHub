@@ -1,0 +1,283 @@
+/* =========================
+   REGISTRATION PAGE
+========================= */
+
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background-color: #f2f6fa;
+    color: #222;
+}
+
+
+/* =========================
+   HEADER
+========================= */
+
+header {
+    text-align: center;
+    background-color: #123c69;
+    color: white;
+    padding: 25px;
+}
+
+header h1 {
+    margin: 0 0 10px;
+    font-size: 32px;
+}
+
+header hr {
+    width: 70%;
+    border: none;
+    height: 1px;
+    background-color: white;
+}
+
+header p {
+    font-size: 16px;
+}
+
+
+/* =========================
+   MAIN
+========================= */
+
+main {
+    display: flex;
+    justify-content: center;
+    padding: 35px 20px;
+}
+
+form {
+    width: 100%;
+    max-width: 650px;
+}
+
+
+/* =========================
+   FIELDSET
+========================= */
+
+fieldset {
+    background-color: white;
+    border: none;
+    border-radius: 12px;
+    padding: 25px 40px;
+
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.12);
+}
+
+legend {
+    margin: auto;
+    padding: 0 15px;
+}
+
+legend h2 {
+    color: #123c69;
+    font-size: 22px;
+}
+
+
+/* =========================
+   LABELS
+========================= */
+
+label {
+    color: #123c69;
+    font-weight: bold;
+}
+
+
+/* =========================
+   TEXT INPUTS
+========================= */
+
+input[type="text"],
+input[type="email"],
+input[type="password"],
+input[type="date"] {
+    width: 100%;
+    padding: 12px;
+
+    margin-top: 7px;
+
+    border: 1px solid #ccd6e0;
+    border-radius: 6px;
+
+    font-size: 15px;
+    outline: none;
+}
+
+input[type="text"]:focus,
+input[type="email"]:focus,
+input[type="password"]:focus,
+input[type="date"]:focus {
+    border-color: #1d70a2;
+    box-shadow: 0 0 4px rgba(29, 112, 162, 0.2);
+}
+
+
+/* =========================
+   RADIO BUTTONS
+========================= */
+
+input[type="radio"] {
+    accent-color: #123c69;
+    margin-left: 8px;
+}
+
+
+/* =========================
+   SELECT
+========================= */
+
+select {
+    width: 100%;
+    padding: 12px;
+
+    margin-top: 7px;
+
+    border: 1px solid #ccd6e0;
+    border-radius: 6px;
+
+    font-size: 15px;
+    background-color: white;
+}
+
+
+/* =========================
+   CHECKBOXES
+========================= */
+
+input[type="checkbox"] {
+    accent-color: #123c69;
+    margin: 8px 4px 8px 8px;
+}
+
+
+/* =========================
+   TEXTAREA
+========================= */
+
+textarea {
+    width: 100%;
+    padding: 12px;
+
+    margin-top: 7px;
+
+    border: 1px solid #ccd6e0;
+    border-radius: 6px;
+
+    font-family: Arial, sans-serif;
+    font-size: 15px;
+
+    resize: vertical;
+    outline: none;
+}
+
+textarea:focus {
+    border-color: #1d70a2;
+    box-shadow: 0 0 4px rgba(29, 112, 162, 0.2);
+}
+
+
+/* =========================
+   BUTTONS
+========================= */
+
+input[type="submit"],
+input[type="reset"] {
+    padding: 12px 28px;
+
+    border: none;
+    border-radius: 6px;
+
+    font-size: 15px;
+    font-weight: bold;
+
+    cursor: pointer;
+    margin: 5px;
+}
+
+
+/* REGISTER */
+
+input[type="submit"] {
+    background-color: #123c69;
+    color: white;
+}
+
+input[type="submit"]:hover {
+    background-color: #1d70a2;
+}
+
+
+/* RESET */
+
+input[type="reset"] {
+    background-color: #e5e9ed;
+    color: #333;
+}
+
+input[type="reset"]:hover {
+    background-color: #ccd3da;
+}
+
+
+/* =========================
+   FOOTER
+========================= */
+
+footer {
+    text-align: center;
+    color: #555;
+    padding: 20px;
+}
+
+footer a {
+    color: #123c69;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+footer a:hover {
+    text-decoration: underline;
+}
+
+
+/* =========================
+   MOBILE
+========================= */
+
+@media (max-width: 600px) {
+
+    header h1 {
+        font-size: 26px;
+    }
+
+    main {
+        padding: 25px 12px;
+    }
+
+    fieldset {
+        padding: 25px 20px;
+    }
+
+    legend h2 {
+        font-size: 20px;
+    }
+
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="date"],
+    select,
+    textarea {
+        width: 100%;
+    }
+
+    input[type="radio"],
+    input[type="checkbox"] {
+        margin-left: 3px;
+    }
+}

@@ -1,0 +1,228 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Login</title>
+    <link rel="stylesheet" href="login.css">
+
+    <style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .dark-mode fieldset {
+            border: 1px solid white;
+        }
+
+        .dark-mode input {
+            background-color: #1e1e1e;
+            color: white;
+            border: 1px solid #555;
+        }
+
+        .dark-mode a {
+            color: #90caf9;
+        }
+
+        #themeToggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #message {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+
+        input[type="submit"] {
+            transition: transform 0.2s;
+        }
+
+        input[type="submit"]:hover {
+            transform: scale(1.05);
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="themeToggle">🌙 Dark Mode</button>
+
+    <header>
+        <h1 align="center">Student Login</h1>
+        <hr>
+        <p align="center">Welcome back! Please login to continue.</p>
+    </header>
+
+    <br>
+
+    <main>
+
+        <form id="loginForm">
+
+            <fieldset>
+                <legend><h2>Login Details</h2></legend>
+
+                <p>
+                    <label>Email:</label><br>
+                    <input type="email"
+                           id="email"
+                           placeholder="Enter your email"
+                           required>
+                </p>
+
+                <p>
+                    <label>Password:</label><br>
+                    <input type="password"
+                           id="password"
+                           placeholder="Enter your password"
+                           required>
+                    <button type="button" id="showPassword">Show</button>
+                </p>
+
+                <p>
+                    <input type="checkbox" id="remember">
+                    Remember Me
+                </p>
+
+                <p align="center">
+                    <input type="submit" value="Login">
+                    <input type="reset" value="Clear" id="clearBtn">
+                </p>
+
+                <p id="message"></p>
+
+            </fieldset>
+
+        </form>
+
+    </main>
+
+    <br>
+
+    <hr>
+
+    <footer>
+
+        <p align="center">
+            New User?
+            <a href="register.html">Register Here</a>
+        </p>
+
+        <p align="center">
+            <a href="page.html">Back to Home</a>
+        </p>
+
+        <p align="center">
+            Student Portal &copy; 2026
+        </p>
+
+    </footer>
+
+    <script>
+        // ===== Light / Dark Mode =====
+        const themeToggle = document.getElementById("themeToggle");
+
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+            themeToggle.textContent = "☀️ Light Mode";
+        }
+
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+                themeToggle.textContent = "☀️ Light Mode";
+            } else {
+                localStorage.setItem("theme", "light");
+                themeToggle.textContent = "🌙 Dark Mode";
+            }
+        });
+
+        // ===== Show / Hide Password =====
+        document.getElementById("showPassword").addEventListener("click", function () {
+            const password = document.getElementById("password");
+
+            if (password.type === "password") {
+                password.type = "text";
+                this.textContent = "Hide";
+            } else {
+                password.type = "password";
+                this.textContent = "Show";
+            }
+        });
+
+        // ===== Remember Me =====
+        const savedEmail = localStorage.getItem("savedEmail");
+        if (savedEmail) {
+            document.getElementById("email").value = savedEmail;
+            document.getElementById("remember").checked = true;
+        }
+
+        // ===== Login Validation =====
+        document.getElementById("loginForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const email = document.getElementById("email").value.trim();
+            const password = document.getElementById("password").value.trim();
+            const remember = document.getElementById("remember").checked;
+            const message = document.getElementById("message");
+
+            const emailPattern = /^[^ ]+@[^ ]+\.[a-z]{2,3}$/;
+
+            if (!email.match(emailPattern)) {
+                message.textContent = "❌ Please enter a valid email address.";
+                message.className = "error";
+                return;
+            }
+
+            if (password.length < 6) {
+                message.textContent = "❌ Password must be at least 6 characters.";
+                message.className = "error";
+                return;
+            }
+
+            // Save email if Remember Me checked
+            if (remember) {
+                localStorage.setItem("savedEmail", email);
+            } else {
+                localStorage.removeItem("savedEmail");
+            }
+
+            message.textContent = "✅ Login Successful! Redirecting...";
+            message.className = "success";
+
+            setTimeout(() => {
+                window.location.href = "dashboard.html";
+            }, 1500);
+        });
+
+        // ===== Clear Form =====
+        document.getElementById("clearBtn").addEventListener("click", () => {
+            document.getElementById("message").textContent = "";
+        });
+    </script>
+
+</body>
+</html>

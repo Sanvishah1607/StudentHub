@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Events - CHARUSAT StudentHub</title>
+    <link rel="stylesheet" href="event.css">
+
+    <style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .dark-mode fieldset {
+            border: 1px solid white;
+        }
+
+        .dark-mode a {
+            color: #90caf9;
+        }
+
+        #themeToggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #clock {
+            text-align: center;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+
+        #searchBox {
+            width: 60%;
+            padding: 8px;
+            margin: 10px auto;
+            display: block;
+        }
+
+        ol li {
+            transition: background-color 0.3s, transform 0.2s;
+            padding: 6px;
+            border-radius: 5px;
+        }
+
+        ol li:hover {
+            background-color: #e0f7fa;
+            transform: translateX(5px);
+            cursor: pointer;
+        }
+
+        .dark-mode ol li:hover {
+            background-color: #1e3a5f;
+        }
+
+        fieldset h2 {
+            cursor: pointer;
+            transition: color 0.3s, transform 0.2s;
+        }
+
+        fieldset h2:hover {
+            color: #00796b;
+            transform: scale(1.02);
+        }
+
+        .dark-mode fieldset h2:hover {
+            color: #4dd0e1;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="themeToggle">🌙 Dark Mode</button>
+
+    <header>
+
+        <h1 align="center">🎓 CHARUSAT StudentHub</h1>
+        <h2 align="center">Campus Events</h2>
+
+        <hr>
+
+        <p align="center">
+            Discover exciting events, activities and opportunities on campus.
+        </p>
+
+        <div id="clock"></div>
+
+    </header>
+
+    <br>
+
+    <main>
+
+        <input type="text" id="searchBox" placeholder="🔍 Search upcoming events...">
+
+        <fieldset>
+            <legend><h2>Featured Events</h2></legend>
+
+            <h2>💻 Tech Fest 2026</h2>
+
+            <p>
+                Join the annual Tech Fest featuring coding competitions,
+                robotics, hackathons, technical workshops and exciting
+                technology-based activities.
+            </p>
+
+            <hr>
+
+            <h2>🎭 Cultural Festival</h2>
+
+            <p>
+                Enjoy dance, music, drama, fashion shows and talent
+                competitions organized by students.
+            </p>
+
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend><h2>Upcoming Events</h2></legend>
+
+            <ol id="eventList">
+                <li><b>Hackathon</b> - 25 August 2026</li>
+                <li><b>Sports Week</b> - 10 September 2026</li>
+                <li><b>Placement Drive</b> - 20 September 2026</li>
+                <li><b>Alumni Meet</b> - 5 October 2026</li>
+            </ol>
+
+        </fieldset>
+
+    </main>
+
+    <br>
+
+    <hr>
+
+    <footer>
+
+        <p align="center">
+            <a href="page.html">🏠 Back to Home</a>
+        </p>
+
+        <p align="center">
+            CHARUSAT StudentHub &copy; 2026
+        </p>
+
+    </footer>
+
+    <script>
+        // ===== Light / Dark Mode =====
+        const themeToggle = document.getElementById("themeToggle");
+
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+            themeToggle.textContent = "☀️ Light Mode";
+        }
+
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+                themeToggle.textContent = "☀️ Light Mode";
+            } else {
+                localStorage.setItem("theme", "light");
+                themeToggle.textContent = "🌙 Dark Mode";
+            }
+        });
+
+        // ===== Welcome Message =====
+        window.addEventListener("load", () => {
+            setTimeout(() => {
+                alert("🎉 Welcome to CHARUSAT StudentHub Events Page!");
+            }, 500);
+        });
+
+        // ===== Live Clock =====
+        function updateClock() {
+            const now = new Date();
+            document.getElementById("clock").textContent =
+                "📅 " + now.toLocaleDateString() +
+                " | ⏰ " + now.toLocaleTimeString();
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // ===== Clickable Upcoming Events =====
+        const eventItems = document.querySelectorAll("#eventList li");
+
+        eventItems.forEach(item => {
+            item.addEventListener("click", () => {
+                alert("📅 You selected: " + item.innerText);
+            });
+        });
+
+        // ===== Featured Event Details =====
+        const featuredTitles = document.querySelectorAll("fieldset h2");
+
+        featuredTitles.forEach(title => {
+            title.addEventListener("click", () => {
+                alert("⭐ More details about: " + title.innerText);
+            });
+        });
+
+        // ===== Search Upcoming Events =====
+        document.getElementById("searchBox").addEventListener("input", function () {
+            const value = this.value.toLowerCase();
+
+            eventItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+
+                if (text.includes(value)) {
+                    item.style.display = "list-item";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>

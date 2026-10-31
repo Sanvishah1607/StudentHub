@@ -1,0 +1,349 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Dashboard - CHARUSAT StudentHub</title>
+
+    <link rel="stylesheet" href="dashboard.css">
+
+    <style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .dark-mode table,
+        .dark-mode th,
+        .dark-mode td {
+            border-color: white;
+        }
+
+        .dark-mode a {
+            color: #90caf9;
+        }
+
+        .modeBtn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .progress-container {
+            width: 80%;
+            height: 20px;
+            background: #ddd;
+            border-radius: 10px;
+            margin: 5px auto;
+            overflow: hidden;
+        }
+
+        .progress-bar {
+            height: 100%;
+            width: 0;
+            background: #00897b;
+            text-align: center;
+            color: white;
+            font-size: 12px;
+            line-height: 20px;
+            transition: width 1s ease-in-out;
+        }
+
+        .quickLink {
+            transition: color 0.3s, transform 0.2s;
+        }
+
+        .quickLink:hover {
+            color: #00897b;
+            font-weight: bold;
+            transform: translateX(5px);
+        }
+
+        .dark-mode .quickLink:hover {
+            color: #4dd0e1;
+        }
+        /* ---------- TABLE FIX ---------- */
+
+table {
+    width: 90%;
+    border-collapse: collapse;
+    background: white;
+    color: black;
+}
+
+th {
+    background: #0b5c8e;
+    color: white;
+    padding: 12px;
+}
+
+td {
+    padding: 12px;
+    color: black;
+    background: white;
+}
+
+/* Zebra rows for light mode */
+tr:nth-child(even) td {
+    background: #f2f2f2;
+}
+
+/* ---------- DARK MODE ---------- */
+.dark-mode table {
+    background: #1e1e1e;
+    color: white;
+}
+
+.dark-mode td {
+    background: #1e1e1e !important;
+    color: white !important;
+}
+
+.dark-mode tr:nth-child(even) td {
+    background: #2a2a2a !important;
+}
+
+.dark-mode th {
+    background: #0b5c8e;
+    color: white !important;
+}
+
+    </style>
+</head>
+
+<body>
+
+    <header>
+
+        <button class="modeBtn" id="modeToggle">🌙 Dark Mode</button>
+
+        <h1 align="center">🎓 CHARUSAT StudentHub</h1>
+        <h2 align="center">Student Dashboard</h2>
+
+        <hr>
+
+        <p align="center">Welcome to your Student Dashboard</p>
+
+        <p align="center" id="dateTime"></p>
+
+        <p align="center" id="greeting"></p>
+
+    </header>
+
+    <br>
+
+    <main>
+
+        <fieldset>
+
+            <legend><h2>Student Information</h2></legend>
+
+            <table border="1" cellpadding="10" cellspacing="0" align="center">
+
+                <tr>
+                    <th>Details</th>
+                    <th>Information</th>
+                </tr>
+
+                <tr>
+                    <td><b>Name</b></td>
+                    <td>Sanvi Patel</td>
+                </tr>
+
+                <tr>
+                    <td><b>Enrollment Number</b></td>
+                    <td>25AIML067</td>
+                </tr>
+
+                <tr>
+                    <td><b>Course</b></td>
+                    <td>B.Tech AIML</td>
+                </tr>
+
+                <tr>
+                    <td><b>Semester</b></td>
+                    <td>3</td>
+                </tr>
+
+                <tr>
+                    <td><b>Attendance</b></td>
+                    <td>
+                        91%
+                        <div class="progress-container">
+                            <div class="progress-bar" id="attendanceBar">91%</div>
+                        </div>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td><b>CGPA</b></td>
+                    <td>
+                        8.75
+                        <div class="progress-container">
+                            <div class="progress-bar" id="cgpaBar">8.75</div>
+                        </div>
+                    </td>
+                </tr>
+
+            </table>
+
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+
+            <legend><h2>Quick Links</h2></legend>
+
+            <ul>
+                <li><a href="#" class="quickLink">View Attendance</a></li>
+                <li><a href="#" class="quickLink">View Result</a></li>
+                <li><a href="#" class="quickLink">Course Materials</a></li>
+                <li><a href="#" class="quickLink">Exam Schedule</a></li>
+                <li><a href="#" class="quickLink">Fee Details</a></li>
+            </ul>
+
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+
+            <legend><h2>Academic Summary</h2></legend>
+
+            <p><b>Attendance:</b> 91%</p>
+            <p><b>Current CGPA:</b> 8.75</p>
+            <p><b>Current Semester:</b> 3</p>
+
+        </fieldset>
+
+    </main>
+
+    <br>
+
+    <hr>
+
+    <footer>
+
+        <p align="center">
+            <a href="page.html">🏠 Back to Home</a>
+        </p>
+
+        <p align="center">
+            CHARUSAT StudentHub &copy; 2026
+        </p>
+
+    </footer>
+
+    <script>
+        // ===== Live Date & Time =====
+        function updateDateTime() {
+            const now = new Date();
+
+            const options = {
+                weekday: "long",
+                year: "numeric",
+                month: "long",
+                day: "numeric"
+            };
+
+            document.getElementById("dateTime").textContent =
+                "📅 " + now.toLocaleDateString("en-IN", options) +
+                " | ⏰ " + now.toLocaleTimeString("en-IN");
+        }
+
+        setInterval(updateDateTime, 1000);
+        updateDateTime();
+
+        // ===== Greeting =====
+        function showGreeting() {
+            const hour = new Date().getHours();
+            let message = "";
+
+            if (hour < 12) {
+                message = "🌞 Good Morning, Student!";
+            } else if (hour < 17) {
+                message = "☀️ Good Afternoon, Student!";
+            } else if (hour < 21) {
+                message = "🌆 Good Evening, Student!";
+            } else {
+                message = "🌙 Good Night, Student!";
+            }
+
+            document.getElementById("greeting").textContent = message;
+        }
+
+        showGreeting();
+
+        // ===== Notification =====
+        function showNotification(text) {
+            const note = document.createElement("div");
+
+            note.innerHTML = text;
+            note.style.position = "fixed";
+            note.style.top = "20px";
+            note.style.right = "20px";
+            note.style.background = "#00695c";
+            note.style.color = "white";
+            note.style.padding = "10px 15px";
+            note.style.borderRadius = "8px";
+            note.style.boxShadow = "0 4px 10px rgba(0,0,0,0.3)";
+            note.style.zIndex = "1000";
+
+            document.body.appendChild(note);
+
+            setTimeout(() => note.remove(), 2500);
+        }
+
+        // ===== Quick Links =====
+        document.querySelectorAll(".quickLink").forEach(link => {
+            link.addEventListener("click", e => {
+                e.preventDefault();
+                showNotification("📂 Opening: <b>" + link.innerText + "</b>");
+            });
+        });
+
+        // ===== Theme Toggle =====
+        const modeBtn = document.getElementById("modeToggle");
+
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+            modeBtn.textContent = "☀️ Light Mode";
+        }
+
+        modeBtn.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+                modeBtn.textContent = "☀️ Light Mode";
+                showNotification("🌙 Dark Mode Enabled");
+            } else {
+                localStorage.setItem("theme", "light");
+                modeBtn.textContent = "🌙 Dark Mode";
+                showNotification("☀️ Light Mode Enabled");
+            }
+        });
+
+        // ===== Progress Bars =====
+        window.addEventListener("load", () => {
+            document.getElementById("attendanceBar").style.width = "91%";
+            document.getElementById("cgpaBar").style.width = "87.5%";
+
+            showNotification("🎓 Welcome to CHARUSAT StudentHub Dashboard");
+        });
+    </script>
+
+</body>
+
+</html>

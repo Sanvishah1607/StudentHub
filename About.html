@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>About - CHARUSAT StudentHub</title>
+    <link rel="stylesheet" href="about.css">
+
+    <style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .dark-mode fieldset {
+            border: 1px solid white;
+        }
+
+        .dark-mode a {
+            color: #90caf9;
+        }
+
+        .modeBtn {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            z-index: 1000;
+        }
+
+        .toggleBtn {
+            padding: 6px 10px;
+            margin-bottom: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+            transition: transform 0.2s;
+        }
+
+        .toggleBtn:hover {
+            transform: scale(1.05);
+        }
+
+        fieldset {
+            transition: transform 0.2s, box-shadow 0.3s;
+        }
+
+        fieldset:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 10px rgba(0,0,0,0.15);
+        }
+
+        #dateTime {
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button class="modeBtn" id="modeToggle">🌙 Dark Mode</button>
+
+    <header>
+
+        <h1 align="center">🎓 CHARUSAT StudentHub</h1>
+        <h2 align="center">About Us</h2>
+
+        <hr>
+
+        <p align="center">
+            Learn more about CHARUSAT StudentHub and its purpose.
+        </p>
+
+        <p align="center" id="dateTime"></p>
+
+    </header>
+
+    <br>
+
+    <main>
+
+        <fieldset>
+            <legend><h2>About CHARUSAT StudentHub</h2></legend>
+
+            <button class="toggleBtn">🔽 Show / Hide</button>
+
+            <div class="content">
+                <p>
+                    CHARUSAT StudentHub is an online student portal designed
+                    to provide students with easy access to important academic
+                    and campus-related information.
+                </p>
+
+                <p>
+                    Students can use the portal to access academic information,
+                    campus events, announcements, examination details,
+                    attendance, results and various student services.
+                </p>
+            </div>
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend><h2>Our Mission</h2></legend>
+
+            <button class="toggleBtn">🔽 Show / Hide</button>
+
+            <div class="content">
+                <p>
+                    🎯 Our mission is to provide quality education, encourage
+                    innovation and promote academic excellence through the
+                    effective use of modern technology.
+                </p>
+            </div>
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend><h2>Our Vision</h2></legend>
+
+            <button class="toggleBtn">🔽 Show / Hide</button>
+
+            <div class="content">
+                <p>
+                    🌟 Our vision is to become a globally recognized university
+                    committed to academic excellence, innovation, research
+                    and the overall development of students.
+                </p>
+            </div>
+        </fieldset>
+
+        <br>
+
+        <fieldset>
+            <legend><h2>What Students Can Access</h2></legend>
+
+            <button class="toggleBtn">🔽 Show / Hide</button>
+
+            <div class="content">
+                <ul>
+                    <li>Academic Information</li>
+                    <li>Student Dashboard</li>
+                    <li>Attendance Details</li>
+                    <li>Examination Schedule</li>
+                    <li>Campus Events</li>
+                    <li>Important Announcements</li>
+                    <li>Student Feedback</li>
+                    <li>University Contact Information</li>
+                </ul>
+            </div>
+        </fieldset>
+
+    </main>
+
+    <br>
+
+    <hr>
+
+    <footer>
+
+        <p align="center">
+            <a href="page.html">🏠 Back to Home</a>
+        </p>
+
+        <p align="center">
+            CHARUSAT StudentHub &copy; 2026
+        </p>
+
+    </footer>
+
+    <script>
+        // ===== Notification Box =====
+        function showNotification(text) {
+            const note = document.createElement("div");
+
+            note.innerHTML = text;
+            note.style.position = "fixed";
+            note.style.top = "20px";
+            note.style.right = "20px";
+            note.style.background = "#00695c";
+            note.style.color = "white";
+            note.style.padding = "10px 15px";
+            note.style.borderRadius = "8px";
+            note.style.boxShadow = "0 4px 10px rgba(0,0,0,0.3)";
+            note.style.zIndex = "1000";
+
+            document.body.appendChild(note);
+
+            setTimeout(() => note.remove(), 2500);
+        }
+
+        // ===== Live Date and Time =====
+        function updateDateTime() {
+            const now = new Date();
+
+            document.getElementById("dateTime").innerHTML =
+                "📅 " + now.toLocaleDateString() +
+                " | ⏰ " + now.toLocaleTimeString();
+        }
+
+        updateDateTime();
+        setInterval(updateDateTime, 1000);
+
+        // ===== Show / Hide Sections =====
+        const buttons = document.querySelectorAll(".toggleBtn");
+
+        buttons.forEach(btn => {
+            btn.addEventListener("click", () => {
+                const content = btn.parentElement.querySelector(".content");
+
+                if (content.style.display === "none") {
+                    content.style.display = "block";
+                    btn.textContent = "🔽 Show / Hide";
+                } else {
+                    content.style.display = "none";
+                    btn.textContent = "▶️ Show / Hide";
+                }
+            });
+        });
+
+        // ===== Dark / Light Mode =====
+        const modeBtn = document.getElementById("modeToggle");
+
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+            modeBtn.textContent = "☀️ Light Mode";
+        }
+
+        modeBtn.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+                modeBtn.textContent = "☀️ Light Mode";
+                showNotification("🌙 Dark Mode Enabled");
+            } else {
+                localStorage.setItem("theme", "light");
+                modeBtn.textContent = "🌙 Dark Mode";
+                showNotification("☀️ Light Mode Enabled");
+            }
+        });
+
+        // ===== Welcome Message =====
+        window.addEventListener("load", () => {
+            showNotification("📘 Welcome to CHARUSAT StudentHub About Page");
+        });
+    </script>
+
+</body>
+</html>

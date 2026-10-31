@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CHARUSAT StudentHub | Home</title>
+    <link rel="stylesheet" href="style.css">
+
+    <style>
+    body {
+        transition: background-color 0.3s, color 0.3s;
+        background-color: #f4f6f9;
+        color: #000;
+    }
+
+    /* Light mode */
+    section,
+    table,
+    th,
+    td,
+    ul,
+    li,
+    p,
+    h1,
+    h2,
+    h3,
+    nav,
+    footer {
+        color: #000;
+    }
+
+    section {
+        background: #fff;
+        padding: 20px;
+        margin: 20px;
+        border-radius: 12px;
+    }
+
+    /* Dark mode */
+    .dark-mode {
+        background-color: #121212;
+        color: white;
+    }
+
+    .dark-mode section {
+        background-color: #1e1e1e;
+    }
+
+    .dark-mode h1,
+    .dark-mode h2,
+    .dark-mode h3,
+    .dark-mode p,
+    .dark-mode li,
+    .dark-mode td,
+    .dark-mode th,
+    .dark-mode nav,
+    .dark-mode footer {
+        color: white;
+    }
+
+    .dark-mode table,
+    .dark-mode th,
+    .dark-mode td {
+        border-color: white;
+    }
+
+    .dark-mode a {
+        color: #90caf9;
+    }
+
+    .dark-mode marquee {
+        color: #ffeb3b;
+    }
+
+    #themeToggle {
+        position: fixed;
+        top: 10px;
+        right: 10px;
+        padding: 8px 12px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        z-index: 1000;
+    }
+
+    #topBtn {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        display: none;
+        padding: 10px 14px;
+        border: none;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 18px;
+    }
+
+    input[type="submit"] {
+        transition: transform 0.2s;
+        cursor: pointer;
+    }
+
+    input[type="submit"]:hover {
+        transform: scale(1.05);
+    }
+
+    #clock {
+        text-align: center;
+        font-weight: bold;
+        margin: 10px 0;
+    }
+</style>
+</head>
+
+<body>
+
+    <button id="themeToggle">🌙 Dark Mode</button>
+    <button id="topBtn">⬆️</button>
+
+    <header>
+
+        <table width="100%" border="0" cellpadding="10">
+            <tr>
+
+                <td width="15%" align="center">
+                    <img src="logo.png" alt="CHARUSAT Logo" width="185" height="150">
+                </td>
+
+                <td align="center">
+    <h1 style="color:#003366;">
+        CHAROTAR UNIVERSITY OF SCIENCE AND TECHNOLOGY
+    </h1>
+
+    <h3 style="color:#005b8f;">(CHARUSAT)</h3>
+
+    <p style="color:#003366;">
+        <b>NAAC A+ Accredited | UGC Approved</b>
+    </p>
+
+    <p style="color:#003366;">
+        <i>|| अमृतं तु विद्या ||</i>
+    </p>
+</td>
+
+                <td width="15%" align="right">
+    <p style="color:#003366;"><b>Student Login</b></p>
+
+    <a href="login.html"
+       style="color:#0066cc; font-weight:bold;">Login</a><br>
+
+    <a href="register.html"
+       style="color:#0066cc; font-weight:bold;">Register</a>
+</td>
+
+            </tr>
+        </table>
+
+        <hr>
+
+        <div id="clock"></div>
+
+        <nav align="center"
+     aria-label="Main Navigation"
+     style="background:#005b8f; padding:15px; border-radius:8px;">
+
+    <a href="page.html" style="color:white; font-weight:bold;">Home</a> |
+    <a href="about.html" style="color:white; font-weight:bold;">About</a> |
+    <a href="dashboard.html" style="color:white; font-weight:bold;">Dashboard</a> |
+    <a href="event.html" style="color:white; font-weight:bold;">Events</a> |
+    <a href="contact.html" style="color:white; font-weight:bold;">Contact</a> |
+    <a href="faq.html" style="color:white; font-weight:bold;">FAQ</a> |
+    <a href="feedback.html" style="color:white; font-weight:bold;">Feedback</a> |
+    <a href="admin.html" style="color:white; font-weight:bold;">Admin</a>
+</nav>
+
+    </header>
+
+    <hr>
+
+    <main>
+
+        <section align="center">
+
+            <h2>Welcome to CHARUSAT StudentHub</h2>
+
+            <img src="campus.png" alt="CHARUSAT Campus" width="700" height="400">
+
+            <p>
+                StudentHub is a centralized portal for CHARUSAT students to access
+                academic information, campus events, announcements, and student
+                services.
+            </p>
+
+            <form action="register.html">
+                <input type="submit" value="Apply Now">
+            </form>
+
+            <br>
+
+            <form action="login.html">
+                <input type="submit" value="Student Login">
+            </form>
+
+        </section>
+
+        <hr>
+
+        <section>
+
+            <h2 align="center">University Highlights</h2>
+
+            <table border="1" width="80%" align="center" cellpadding="8">
+
+                <tr>
+                    <th>Feature</th>
+                    <th>Information</th>
+                </tr>
+
+                <tr>
+                    <td>Accreditation</td>
+                    <td>NAAC A+ Accredited</td>
+                </tr>
+
+                <tr>
+                    <td>Approval</td>
+                    <td>UGC Approved University</td>
+                </tr>
+
+                <tr>
+                    <td>Location</td>
+                    <td>Changa, Anand, Gujarat</td>
+                </tr>
+
+                <tr>
+                    <td>Campus</td>
+                    <td>Modern Smart Campus with Wi-Fi</td>
+                </tr>
+
+                <tr>
+                    <td>Students</td>
+                    <td>11,000+ Students</td>
+                </tr>
+
+                <tr>
+                    <td>Faculty</td>
+                    <td>750+ Faculty Members</td>
+                </tr>
+
+            </table>
+
+        </section>
+
+        <hr>
+
+        <section>
+
+            <h2 align="center">Institutes</h2>
+
+            <ul>
+                <li>CSPIT - Chandubhai S. Patel Institute of Technology</li>
+                <li>DEPSTAR - Devang Patel Institute of Advance Technology and Research</li>
+                <li>CMPICA - Chandaben Mohanbhai Patel Institute of Computer Applications</li>
+                <li>RPCP - Ramanbhai Patel College of Pharmacy</li>
+                <li>I2IM - Indukaka Ipcowala Institute of Management</li>
+                <li>PDPIAS - P. D. Patel Institute of Applied Sciences</li>
+                <li>MTIN - Manikaka Topawala Institute of Nursing</li>
+                <li>ARIP - Ashok & Rita Patel Institute of Physiotherapy</li>
+                <li>BDIAS - Bapubhai Desaibhai Institute of Paramedical Sciences</li>
+                <li>CLASS - Centre for Liberal Arts and Social Sciences</li>
+            </ul>
+
+        </section>
+
+        <hr>
+
+        <section>
+
+            <h2 align="center">Latest Announcements</h2>
+
+            <marquee id="announcement">
+                Admissions Open 2026 | National Symposium on Innovative Pedagogy |
+                Workshop Registration Open | Campus Recruitment Drive |
+                Semester Examination Schedule Released
+            </marquee>
+
+        </section>
+
+        <hr>
+
+        <section>
+
+            <h2 align="center">Quick Links</h2>
+
+            <ul>
+                <li><a href="dashboard.html">Student Dashboard</a></li>
+                <li><a href="event.html">Upcoming Events</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+                <li><a href="feedback.html">Submit Feedback</a></li>
+            </ul>
+
+        </section>
+
+    </main>
+
+    <hr>
+
+    <footer align="center">
+
+        <p>
+            <b>CHAROTAR UNIVERSITY OF SCIENCE AND TECHNOLOGY (CHARUSAT)</b><br>
+            Off Nadiad-Petlad Highway,<br>
+            Changa, Anand, Gujarat - 388421
+        </p>
+
+        <p>
+            Email: info@charusat.ac.in<br>
+            Phone: +91 2697 265011
+        </p>
+
+        <p>
+            &copy; 2026 CHARUSAT StudentHub. All Rights Reserved.
+        </p>
+
+    </footer>
+
+    <script>
+        
+        // Theme Toggle
+const themeToggle = document.getElementById("themeToggle");
+
+function applyTheme(theme) {
+    if (theme === "dark") {
+        document.body.classList.add("dark-mode");
+        themeToggle.textContent = "☀️ Light Mode";
+    } else {
+        document.body.classList.remove("dark-mode");
+        themeToggle.textContent = "🌙 Dark Mode";
+    }
+}
+
+// Load saved theme
+applyTheme(localStorage.getItem("theme") || "light");
+
+themeToggle.addEventListener("click", () => {
+    const newTheme = document.body.classList.contains("dark-mode")
+        ? "light"
+        : "dark";
+
+    localStorage.setItem("theme", newTheme);
+    applyTheme(newTheme);
+});
+
+        // Live Clock
+        function updateClock() {
+            const now = new Date();
+            document.getElementById("clock").textContent =
+                now.toLocaleDateString() + " | " + now.toLocaleTimeString();
+        }
+
+        setInterval(updateClock, 1000);
+        updateClock();
+
+        // Back to Top Button
+        const topBtn = document.getElementById("topBtn");
+
+        window.addEventListener("scroll", () => {
+            topBtn.style.display = window.scrollY > 300 ? "block" : "none";
+        });
+
+        topBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        // Welcome Popup
+        window.addEventListener("load", () => {
+            setTimeout(() => {
+                alert("🎓 Welcome to CHARUSAT StudentHub! Explore campus updates, events, and student services.");
+            }, 1000);
+        });
+
+        // Interactive Announcement
+        document.getElementById("announcement").addEventListener("click", () => {
+            alert("📢 Latest Update: Admissions Open 2026 and Semester Exam Schedule Released!");
+        });
+    </script>
+
+</body>
+</html>

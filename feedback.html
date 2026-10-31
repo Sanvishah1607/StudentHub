@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Feedback</title>
+    <link rel="stylesheet" href="feedback.css">
+
+    <style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .dark-mode fieldset {
+            border: 1px solid white;
+        }
+
+        .dark-mode input,
+        .dark-mode select,
+        .dark-mode textarea {
+            background-color: #1e1e1e;
+            color: white;
+            border: 1px solid #555;
+        }
+
+        .dark-mode a {
+            color: #90caf9;
+        }
+
+        #themeToggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #message {
+            text-align: center;
+            font-weight: bold;
+            margin-top: 10px;
+        }
+
+        .success {
+            color: green;
+        }
+
+        .error {
+            color: red;
+        }
+
+        #counter {
+            font-size: 14px;
+            text-align: right;
+        }
+
+        input[type="submit"] {
+            transition: transform 0.2s;
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            transform: scale(1.05);
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="themeToggle">🌙 Dark Mode</button>
+
+    <header>
+        <h1 align="center">Student Feedback Form</h1>
+        <hr>
+        <p align="center">We value your feedback and suggestions.</p>
+    </header>
+
+    <br>
+
+    <main>
+
+        <form id="feedbackForm">
+
+            <fieldset>
+                <legend><h2>Feedback Details</h2></legend>
+
+                <p>
+                    <label>Name:</label><br>
+                    <input type="text"
+                           id="name"
+                           placeholder="Enter your name"
+                           required>
+                </p>
+
+                <p>
+                    <label>Enrollment Number:</label><br>
+                    <input type="text"
+                           id="enrollment"
+                           placeholder="Enter enrollment number"
+                           required>
+                </p>
+
+                <p>
+                    <label>Department:</label><br>
+                    <select id="department">
+                        <option value="">Select Department</option>
+                        <option>Computer Science</option>
+                        <option>Information Technology</option>
+                        <option>Artificial Intelligence</option>
+                        <option>Mechanical Engineering</option>
+                        <option>Civil Engineering</option>
+                        <option>Electrical Engineering</option>
+                    </select>
+                </p>
+
+                <p>
+    <label><b>Rating:</b></label><br>
+
+    <label>
+        <input type="radio" name="rating" value="Excellent"> Excellent
+    </label>
+
+    <label style="margin-left:20px;">
+        <input type="radio" name="rating" value="Good"> Good
+    </label>
+
+    <label style="margin-left:20px;">
+        <input type="radio" name="rating" value="Average"> Average
+    </label>
+
+    <label style="margin-left:20px;">
+        <input type="radio" name="rating" value="Poor"> Poor
+    </label>
+</p>
+
+                <p>
+                    <label>Your Feedback:</label><br>
+                    <textarea id="feedback"
+                              rows="6"
+                              cols="40"
+                              placeholder="Write your feedback here..."
+                              required></textarea>
+                    <div id="counter">0 / 300 characters</div>
+                </p>
+
+                <p align="center">
+                    <input type="submit" value="Submit Feedback">
+                    <input type="reset" value="Reset" id="resetBtn">
+                </p>
+
+                <p id="message"></p>
+
+            </fieldset>
+
+        </form>
+
+    </main>
+
+    <br>
+
+    <hr>
+
+    <footer>
+
+        <p align="center">
+            <a href="page.html">Back to Home</a>
+        </p>
+
+        <p align="center">
+            Student Portal &copy; 2026
+        </p>
+
+    </footer>
+
+    <script>
+        // ===== Light / Dark Mode =====
+        const themeToggle = document.getElementById("themeToggle");
+
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+            themeToggle.textContent = "☀️ Light Mode";
+        }
+
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+                themeToggle.textContent = "☀️ Light Mode";
+            } else {
+                localStorage.setItem("theme", "light");
+                themeToggle.textContent = "🌙 Dark Mode";
+            }
+        });
+
+        // ===== Character Counter =====
+        const feedbackBox = document.getElementById("feedback");
+        const counter = document.getElementById("counter");
+
+        feedbackBox.addEventListener("input", () => {
+            const length = feedbackBox.value.length;
+            counter.textContent = `${length} / 300 characters`;
+
+            if (length > 300) {
+                feedbackBox.value = feedbackBox.value.substring(0, 300);
+                counter.textContent = "300 / 300 characters";
+            }
+        });
+
+        // ===== Feedback Validation =====
+        document.getElementById("feedbackForm").addEventListener("submit", function (e) {
+            e.preventDefault();
+
+            const name = document.getElementById("name").value.trim();
+            const enrollment = document.getElementById("enrollment").value.trim();
+            const department = document.getElementById("department").value;
+            const feedback = feedbackBox.value.trim();
+            const rating = document.querySelector('input[name="rating"]:checked');
+            const message = document.getElementById("message");
+
+            if (name.length < 3) {
+                message.textContent = "❌ Please enter a valid name.";
+                message.className = "error";
+                return;
+            }
+
+            if (enrollment.length < 5) {
+                message.textContent = "❌ Please enter a valid enrollment number.";
+                message.className = "error";
+                return;
+            }
+
+            if (department === "") {
+                message.textContent = "❌ Please select your department.";
+                message.className = "error";
+                return;
+            }
+
+            if (!rating) {
+                message.textContent = "❌ Please select a rating.";
+                message.className = "error";
+                return;
+            }
+
+            if (feedback.length < 10) {
+                message.textContent = "❌ Feedback should contain at least 10 characters.";
+                message.className = "error";
+                return;
+            }
+
+            message.textContent = "🎉 Thank you! Your feedback has been submitted successfully.";
+            message.className = "success";
+
+            this.reset();
+            counter.textContent = "0 / 300 characters";
+        });
+
+        // ===== Reset Button =====
+        document.getElementById("resetBtn").addEventListener("click", () => {
+            document.getElementById("message").textContent = "";
+            counter.textContent = "0 / 300 characters";
+        });
+    </script>
+
+</body>
+</html>

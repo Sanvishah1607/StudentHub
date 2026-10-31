@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>FAQ</title>
+    <link rel="stylesheet" href="faq.css">
+
+    <style>
+        body {
+            transition: background-color 0.3s, color 0.3s;
+        }
+
+        .dark-mode {
+            background-color: #121212;
+            color: white;
+        }
+
+        .dark-mode fieldset {
+            border: 1px solid white;
+        }
+
+        .dark-mode details {
+            background-color: #1e1e1e;
+            border: 1px solid #444;
+        }
+
+        .dark-mode input {
+            background-color: #1e1e1e;
+            color: white;
+            border: 1px solid #555;
+        }
+
+        .dark-mode a {
+            color: #90caf9;
+        }
+
+        #themeToggle {
+            position: fixed;
+            top: 10px;
+            right: 10px;
+            padding: 8px 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        details {
+            padding: 10px;
+            border-radius: 6px;
+            transition: background-color 0.3s;
+        }
+
+        details:hover {
+            background-color: rgba(0,0,0,0.05);
+        }
+
+        .dark-mode details:hover {
+            background-color: rgba(255,255,255,0.08);
+        }
+
+        #searchBox {
+            width: 60%;
+            padding: 8px;
+            margin-bottom: 15px;
+        }
+
+        .faq-controls {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .faq-controls button {
+            padding: 8px 12px;
+            margin: 5px;
+            cursor: pointer;
+            border-radius: 5px;
+            border: none;
+        }
+    </style>
+</head>
+
+<body>
+
+    <button id="themeToggle">🌙 Dark Mode</button>
+
+    <header>
+
+        <h1 align="center">Frequently Asked Questions</h1>
+
+        <hr>
+
+        <p align="center">
+            Find answers to common questions about the Student Portal.
+        </p>
+
+    </header>
+
+    <br>
+
+    <main>
+
+        <div align="center">
+            <input type="text" id="searchBox" placeholder="🔍 Search FAQ...">
+        </div>
+
+        <div class="faq-controls">
+            <button id="expandAll">➕ Expand All</button>
+            <button id="collapseAll">➖ Collapse All</button>
+        </div>
+
+        <fieldset>
+            <legend><h2>General Questions</h2></legend>
+
+            <details class="faq-item">
+                <summary><b>1. How can I login?</b></summary>
+                <p>Use your registered Email and Password to login.</p>
+            </details>
+
+            <br>
+
+            <details class="faq-item">
+                <summary><b>2. How can I register?</b></summary>
+                <p>Click on the Register option from the Home Page and fill in the required details.</p>
+            </details>
+
+            <br>
+
+            <details class="faq-item">
+                <summary><b>3. How can I check attendance?</b></summary>
+                <p>Login to your account and open the Dashboard to check your attendance.</p>
+            </details>
+
+            <br>
+
+            <details class="faq-item">
+                <summary><b>4. Where can I see university events?</b></summary>
+                <p>Open the Events page from the Student Portal to view upcoming events.</p>
+            </details>
+
+            <br>
+
+            <details class="faq-item">
+                <summary><b>5. How can I contact the university?</b></summary>
+                <p>Visit the Contact page to find the university's contact information.</p>
+            </details>
+
+        </fieldset>
+
+    </main>
+
+    <br>
+
+    <hr>
+
+    <footer>
+
+        <p align="center">
+            <a href="page.html">Back to Home</a>
+        </p>
+
+        <p align="center">
+            Student Portal &copy; 2026
+        </p>
+
+    </footer>
+
+    <script>
+        // ===== Light / Dark Mode =====
+        const themeToggle = document.getElementById("themeToggle");
+
+        if (localStorage.getItem("theme") === "dark") {
+            document.body.classList.add("dark-mode");
+            themeToggle.textContent = "☀️ Light Mode";
+        }
+
+        themeToggle.addEventListener("click", () => {
+            document.body.classList.toggle("dark-mode");
+
+            if (document.body.classList.contains("dark-mode")) {
+                localStorage.setItem("theme", "dark");
+                themeToggle.textContent = "☀️ Light Mode";
+            } else {
+                localStorage.setItem("theme", "light");
+                themeToggle.textContent = "🌙 Dark Mode";
+            }
+        });
+
+        // ===== Expand / Collapse All =====
+        const faqItems = document.querySelectorAll(".faq-item");
+
+        document.getElementById("expandAll").addEventListener("click", () => {
+            faqItems.forEach(item => item.open = true);
+        });
+
+        document.getElementById("collapseAll").addEventListener("click", () => {
+            faqItems.forEach(item => item.open = false);
+        });
+
+        // ===== Search FAQ =====
+        document.getElementById("searchBox").addEventListener("input", function () {
+            const value = this.value.toLowerCase();
+
+            faqItems.forEach(item => {
+                const text = item.textContent.toLowerCase();
+
+                if (text.includes(value)) {
+                    item.style.display = "block";
+                } else {
+                    item.style.display = "none";
+                }
+            });
+        });
+    </script>
+
+</body>
+
+</html>
